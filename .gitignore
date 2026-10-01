@@ -1,0 +1,48 @@
+# .gitignore
+# Netflix Content Analysis SQL Project
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Node (if added later)
+node_modules/
+npm-debug.log
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+temp/
+tmp/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Large files (if needed)
+*.tar.gz
+*.zip

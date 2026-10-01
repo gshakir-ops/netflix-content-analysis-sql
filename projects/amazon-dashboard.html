@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Sales Analytics Dashboard - Golam Shakir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', system-ui, sans-serif;
+      background: #050505;
+      color: #F5F5F0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #4A9FFF;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 40px;
+      transition: gap 0.3s ease;
+    }
+
+    .back-link:hover {
+      gap: 12px;
+    }
+
+    .project-header {
+      margin-bottom: 60px;
+    }
+
+    .project-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: rgba(245, 245, 240, 0.7);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-summary {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(245, 245, 240, 0.85);
+      max-width: 800px;
+      margin-bottom: 32px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tag {
+      padding: 8px 16px;
+      background: rgba(74, 159, 255, 0.15);
+      border: 1px solid rgba(74, 159, 255, 0.3);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .section {
+      margin: 60px 0;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .dashboard-embed {
+      background: rgba(245, 245, 240, 0.03);
+      border: 1px solid rgba(245, 245, 240, 0.1);
+      border-radius: 12px;
+      padding: 40px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .dashboard-embed iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .kpi-card {
+      background: rgba(245, 245, 240, 0.03);
+      border: 1px solid rgba(245, 245, 240, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      color: rgba(245, 245, 240, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #4A9FFF;
+    }
+
+    .insight-list {
+      list-style: none;
+    }
+
+    .insight-list li {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(245, 245, 240, 0.1);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .insight-list li:last-child {
+      border-bottom: none;
+    }
+
+    .insight-list strong {
+      color: #4A9FFF;
+      font-weight: 600;
+    }
+
+    .methodology {
+      background: rgba(245, 245, 240, 0.02);
+      border-left: 3px solid #4A9FFF;
+      padding: 24px;
+      border-radius: 6px;
+      margin: 24px 0;
+    }
+
+    .methodology h4 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #4A9FFF;
+    }
+
+    .methodology ol {
+      padding-left: 20px;
+    }
+
+    .methodology li {
+      margin: 8px 0;
+      color: rgba(245, 245, 240, 0.85);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      .project-title {
+        font-size: 32px;
+      }
+
+      .dashboard-embed {
+        padding: 20px;
+      }
+
+      .dashboard-embed iframe {
+        height: 400px;
+      }
+
+      .kpi-value {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html#projects" class="back-link">← Back to Portfolio</a>
+
+    <div class="project-header">
+      <h1 class="project-title">Amazon Sales Analytics Dashboard</h1>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span>📅</span>
+          <span>August 2026</span>
+        </div>
+        <div class="meta-item">
+          <span>⏱️</span>
+          <span>3 weeks</span>
+        </div>
+        <div class="meta-item">
+          <span>🎯</span>
+          <span>Business Intelligence</span>
+        </div>
+      </div>
+
+      <p class="project-summary">
+        This comprehensive data analysis project examines 88,947 Amazon sales transactions collected over a 4-year period from 2019 to 2022, representing $8.4 million in total revenue across multiple product categories. The analysis began with raw transactional data containing product details, pricing information, customer reviews, and temporal sales patterns.
+      </p>
+
+      <p class="project-summary">
+        The primary objective was to transform this large dataset into actionable business intelligence by identifying top-performing product categories, understanding seasonal sales trends, analyzing customer engagement patterns, and providing data-driven recommendations for inventory management and marketing strategy. Through systematic data cleaning, feature engineering, and statistical analysis, this project delivers insights that directly impact revenue optimization and business decision-making.
+      </p>
+
+      <p class="project-summary">
+        Using Python for data preparation and Power BI for visualization, the analysis uncovered that just two categories—Camera and Men Shoes—account for 56% of total revenue, identified the highest-performing individual products generating over $100K in sales, and revealed Q4 seasonal peaks that inform strategic planning. The interactive dashboard created from this analysis enables stakeholders to explore sales performance across multiple dimensions including time, category, product, and customer engagement metrics.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Power BI</span>
+        <span class="tag">Python</span>
+        <span class="tag">Data Cleaning</span>
+        <span class="tag">Statistical Analysis</span>
+        <span class="tag">Business Intelligence</span>
+      </div>
+    </div>
+
+    <!-- KPIs Section -->
+    <section class="section">
+      <h2 class="section-title">Key Performance Indicators</h2>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Revenue</div>
+          <div class="kpi-value">$8.4M</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Transactions</div>
+          <div class="kpi-value">88,947</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Reviews</div>
+          <div class="kpi-value">58.5M</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Price</div>
+          <div class="kpi-value">$94.55</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Embed -->
+    <section class="section">
+      <h2 class="section-title">Interactive Dashboard</h2>
+      <div class="dashboard-embed">
+        <p style="color: rgba(245, 245, 240, 0.6); margin-bottom: 20px;">
+          📊 Amazon Sales Dashboard Visualization
+        </p>
+        <iframe src="amazon-dashboard-view.html"></iframe>
+        <p style="color: rgba(245, 245, 240, 0.5); margin-top: 16px; font-size: 14px;">
+          Interactive HTML dashboard with hover details and zoom capabilities
+        </p>
+      </div>
+    </section>
+
+    <!-- Key Insights -->
+    <section class="section">
+      <h2 class="section-title">Key Business Insights</h2>
+      <ul class="insight-list">
+        <li>
+          <strong>Top Revenue Drivers:</strong> Camera and Men Shoes categories generate 56% of total revenue
+          ($2.48M and $2.23M respectively), making them critical focus areas for inventory and marketing.
+        </li>
+        <li>
+          <strong>Best-Selling Product:</strong> Atomos Ninja V Camera generated $107,191 in sales,
+          followed by Canal Toys Photo Creator at $75,857.
+        </li>
+        <li>
+          <strong>Seasonal Trends:</strong> September 2019 achieved peak sales of $193,021, with Q4
+          consistently showing higher performance across all years.
+        </li>
+        <li>
+          <strong>Customer Engagement:</strong> Men Clothes category leads with 18.9M reviews, indicating
+          strong customer interaction and engagement opportunities.
+        </li>
+        <li>
+          <strong>Price Distribution:</strong> 50% of products priced under $46 (median), but premium items
+          ($500+) contribute significantly to revenue despite lower volume.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Methodology -->
+    <section class="section">
+      <h2 class="section-title">Project Methodology</h2>
+      <div class="methodology">
+        <h4>Data Cleaning & Preparation</h4>
+        <ol>
+          <li>Standardized column names and removed special characters</li>
+          <li>Converted data types (Price to numeric, OrderDate to datetime)</li>
+          <li>Handled missing values using median imputation for prices</li>
+          <li>Removed 135 duplicate records (99.85% data quality achieved)</li>
+          <li>Created time-based features: Year, Month, Quarter, Day of Week</li>
+        </ol>
+      </div>
+
+      <div class="methodology">
+        <h4>Analysis & Visualization</h4>
+        <ol>
+          <li>Performed descriptive statistical analysis on 88,947 clean records</li>
+          <li>Identified top categories and products by revenue contribution</li>
+          <li>Analyzed temporal patterns and seasonal trends</li>
+          <li>Created 7 specialized CSV datasets for dashboard components</li>
+          <li>Built interactive Power BI dashboard with multiple visualizations</li>
+          <li>Generated HTML version for easy sharing and viewing</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tools & Technologies -->
+    <section class="section">
+      <h2 class="section-title">Tools & Technologies</h2>
+      <ul class="insight-list">
+        <li><strong>Python:</strong> Data cleaning, feature engineering, statistical analysis</li>
+        <li><strong>Pandas & NumPy:</strong> Data manipulation and numerical computations</li>
+        <li><strong>Power BI:</strong> Interactive dashboard creation and data modeling</li>
+        <li><strong>Excel:</strong> Initial data exploration and validation</li>
+        <li><strong>Plotly:</strong> HTML dashboard generation for web viewing</li>
+      </ul>
+    </section>
+
+    <!-- Impact -->
+    <section class="section">
+      <h2 class="section-title">Business Impact & Recommendations</h2>
+      <ul class="insight-list">
+        <li>
+          <strong>Strategic Focus:</strong> Recommended prioritizing Camera and Men Shoes inventory
+          based on 56% revenue contribution analysis.
+        </li>
+        <li>
+          <strong>Marketing Optimization:</strong> Identified Q4 seasonal peaks for targeted campaign planning
+          and budget allocation.
+        </li>
+        <li>
+          <strong>Inventory Management:</strong> Provided day-of-week sales patterns for optimized
+          staffing and stock replenishment.
+        </li>
+        <li>
+          <strong>Product Strategy:</strong> Highlighted top 5 performers for cross-selling and
+          promotional opportunities.
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
