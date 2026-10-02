@@ -37,10 +37,8 @@ CREATE TABLE netflix_raw_staging (
 -- STEP 2: IMPORT RAW DATA FROM CSV
 -- ============================================================================
 
--- Copy raw CSV into staging table (adjust path as needed)
--- \COPY netflix_raw_staging FROM 'E:\archive (1)\netflix_titles.csv' WITH (FORMAT csv, HEADER, DELIMITER ',', QUOTE '"', ESCAPE '"', NULL '');
-
--- For this script, assume data is already loaded via external ETL tool or psql \copy command
+-- Load the source CSV from the repository root using the psql client.
+\copy netflix_raw_staging FROM 'data/raw/netflix_titles.csv' WITH (FORMAT csv, HEADER, DELIMITER ',', QUOTE '"', ESCAPE '"', NULL '')
 
 -- ============================================================================
 -- STEP 3: CREATE CLEANED MAIN TABLE
