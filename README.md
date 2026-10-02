@@ -136,7 +136,7 @@ All cleaning is:
 - **Documented** in this README and `docs/methodology.md`
 - **Traceable** via SQL queries and data_quality_flag field
 - **Reversible** (raw data always available)
-- **Repeatable** via `sql/01_create_tables.sql`
+- **Repeatable** via `sql/01_create_and_clean_tables.sql`
 
 ---
 
@@ -528,7 +528,7 @@ This project is licensed under the MIT License. See LICENSE file for details.
 
 
 
-**Last Updated:** October 1, 2026  
+**Last Reviewed:** October 2, 2026  
 **Dataset Date:** September 25, 2021  
 **Database:** PostgreSQL 12+
 
