@@ -123,13 +123,13 @@ SELECT
     -- Rating: handle the 3 anomalies and blank rating
     CASE
         -- Anomaly 1: s5542 has '74 min' in rating field
-        WHEN TRIM(raw.show_id) = 's5542' THEN 'TV-MA'
+        WHEN TRIM(raw.show_id) = 's5542' THEN NULL
 
         -- Anomaly 2: s5795 has '84 min' in rating field
-        WHEN TRIM(raw.show_id) = 's5795' THEN 'TV-MA'
+        WHEN TRIM(raw.show_id) = 's5795' THEN NULL
 
         -- Anomaly 3: s5814 has '66 min' in rating field
-        WHEN TRIM(raw.show_id) = 's5814' THEN 'TV-MA'
+        WHEN TRIM(raw.show_id) = 's5814' THEN NULL
 
         -- Handle blank ratings
         WHEN TRIM(raw.rating) = '' OR TRIM(raw.rating) IN ('66 min', '74 min', '84 min') THEN NULL
@@ -251,7 +251,7 @@ ORDER BY raw.show_id, genre;
 --    - s5542: '74 min' moved from rating → duration
 --    - s5795: '84 min' moved from rating → duration
 --    - s5814: '66 min' moved from rating → duration
---    - All 3 assigned rating='TV-MA' (comedy specials)
+--    - The original ratings remain NULL because the source does not establish them
 -- 4. Converted release_year to INTEGER type
 -- 5. Converted date_added to DATE type using 'Month DD, YYYY' format
 -- 6. Normalized country field: split by comma, one row per country

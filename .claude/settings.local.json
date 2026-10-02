@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(@\\('hero', 'about', 'projects', 'credentials'\\) | ForEach-Object { New-Item -ItemType Directory -Path \"public/images/$_\" -Force | Out-Null }; Write-Output \"Created image directories\")",
-      "PowerShell(@\\('Hero', 'About', 'Skills', 'Projects', 'Process', 'Contact', 'Navigation', 'Scene3D'\\) | ForEach-Object { New-Item -ItemType Directory -Path \"src/components/$_\" -Force | Out-Null }; Write-Output \"Created component directories\")",
-      "PowerShell(npm run *)"
-    ]
-  }
-}

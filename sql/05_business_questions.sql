@@ -35,7 +35,7 @@ ORDER BY count DESC;
 -- TV Show | 2676 | 30.34
 --
 -- OBSERVATION: The catalog is heavily weighted toward movies (2.3x more movies than TV shows)
--- INTERPRETATION: Netflix prioritizes movie content acquisition
+-- INTERPRETATION: Movies make up the larger share of the provided catalog snapshot
 -- LIMITATION: This cannot tell us about viewing patterns, revenue contribution, or subscriber preference
 
 -- ============================================================================
@@ -56,7 +56,7 @@ LIMIT 10;
 -- Expected Results: Top genres typically include International Movies, Dramas, Comedies, etc.
 --
 -- OBSERVATION: Certain genres appear in significantly more titles than others
--- INTERPRETATION: Netflix focuses heavily on diverse content including international and dramatic content
+-- INTERPRETATION: These are among the most frequently represented genres in the dataset
 -- LIMITATION: High coverage % (>100% total) is expected because titles have multiple genres
 -- LIMITATION: This does not indicate which genres are most watched or generate revenue
 
@@ -88,7 +88,7 @@ ORDER BY decade DESC;
 -- Expected: Heavy concentration in recent decades (1990s, 2000s, 2010s, 2020s)
 --
 -- OBSERVATION: Most content in Netflix catalog was released in last 30 years
--- INTERPRETATION: Netflix focuses on relatively recent content
+-- INTERPRETATION: The dataset contains a large concentration of relatively recent release years
 -- LIMITATION: This measures release dates, not when content was added to Netflix
 
 -- ============================================================================
@@ -111,7 +111,7 @@ ORDER BY year_added DESC;
 -- Expected: Dataset captured mid-2021, so no full 2021 year
 --
 -- OBSERVATION: Netflix aggressively added content in 2020-2021
--- INTERPRETATION: Netflix expanded catalog significantly during pandemic period
+-- INTERPRETATION: The snapshot contains many additions in 2020 and 2021; 2021 is partial
 -- LIMITATION: This is snapshot data; newer data would show different patterns
 -- LIMITATION: Cannot determine if additions increased, stayed flat, or decreased after 2021
 
@@ -136,7 +136,7 @@ LIMIT 15;
 -- Expected: United States dominates, followed by India, UK, Japan, etc.
 --
 -- OBSERVATION: United States produces far more content than any other country
--- INTERPRETATION: Netflix relies heavily on US production; also significant investment in Indian and international content
+-- INTERPRETATION: Country counts describe metadata coverage and do not establish production investment or strategic priority
 -- LIMITATION: Multi-country productions (co-productions) appear in multiple rows
 -- LIMITATION: Cannot determine production budget, quality, or cultural diversity value
 
@@ -215,7 +215,7 @@ ORDER BY count DESC;
 -- Expected: TV-MA and PG-13 typically highest
 --
 -- OBSERVATION: Netflix catalog heavily skews toward mature content (TV-MA, R, PG-13)
--- INTERPRETATION: Netflix targets adult/teen audience; limited kids-specific content
+-- INTERPRETATION: Rating composition is descriptive of this metadata snapshot and does not establish a target audience
 -- LIMITATION: Cannot determine if this reflects viewer demand or acquisition strategy
 -- LIMITATION: Unrated content may be older films with missing rating data
 
@@ -257,7 +257,7 @@ ORDER BY
 -- Expected: Mix of recent and older content; some acquisitions years after release
 --
 -- OBSERVATION: Netflix acquires content both recently released and years after release
--- INTERPRETATION: Netflix balances new theatrical releases with back-catalog licensing
+-- INTERPRETATION: The release-to-addition gap describes timing in the dataset and does not establish licensing strategy
 -- LIMITATION: This reflects acquisition timing, not streaming licensing windows
 -- LIMITATION: Cannot determine which acquisition patterns drive subscriber engagement
 

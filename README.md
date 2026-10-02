@@ -1,6 +1,8 @@
-# Netflix Content Analytics: SQL Data Cleaning & Catalog Analysis
+# Netflix Content Analysis — PostgreSQL
 
-A professional SQL data analytics project demonstrating data cleaning, relational modeling, and analytical SQL techniques on Netflix catalog metadata.
+**PostgreSQL 12+ | Data Cleaning | Relational Modeling | Exploratory Analysis | Advanced SQL**
+
+A portfolio project focused on data quality, relational modeling, descriptive analysis, and analytical SQL on Netflix catalog metadata.
 
 ---
 
@@ -18,17 +20,14 @@ The project follows data analyst best practices: preserve raw data, validate all
 
 ---
 
-## Business Objective
+## Business Questions
 
-Understand the composition, distribution, and characteristics of Netflix's content catalog using exploratory and analytical SQL queries. The analysis answers questions such as:
-
-- How is content distributed between Movies and TV Shows?
-- Which genres and countries dominate the catalog?
-- How has Netflix acquired and added content over time?
-- What are the typical characteristics of movie duration and TV show seasons?
-- How does content differ between Movies and TV Shows?
-
----
+- How is the dataset distributed between Movies and TV Shows?
+- Which genres and countries are represented most frequently?
+- What are the typical movie runtimes and TV Show season counts?
+- How have title additions varied by year in the snapshot?
+- Which content ratings are most common?
+- What is the release-to-addition gap?
 
 ## Dataset Description
 
@@ -117,7 +116,7 @@ Understand the composition, distribution, and characteristics of Netflix's conte
 
 1. **Raw data preserved:** Original `netflix_titles.csv` stored untouched in `data/raw/`
 2. **Staging area:** Data loaded into temporary staging table
-3. **Transformation:** Applied cleaning logic via SQL (documented in `01_create_tables.sql`)
+3. **Transformation:** Applied cleaning logic via SQL (documented in `01_create_and_clean_tables.sql`)
 4. **Validation:** Data quality checks executed (see `02_data_quality_checks.sql`)
 5. **Normalization:** Multi-value fields split into junction tables
 
@@ -216,7 +215,7 @@ title_genres (junction table)
 
 **Finding:** 6,131 Movies (69.66%) and 2,676 TV Shows (30.34%)
 
-**Interpretation:** Netflix prioritizes movies (2.3x more than TV shows)
+**Interpretation:** dataset-level descriptive pattern (2.3x more than TV shows)
 
 **Limitation:** Cannot determine if this reflects Netflix's strategy, market availability, or subscriber demand
 
@@ -229,7 +228,7 @@ title_genres (junction table)
 4. Action & Adventure (756 titles, 8.60%)
 5. Romantic Movies (657 titles, 7.47%)
 
-**Interpretation:** Netflix focuses on diverse, story-driven content (international + dramas)
+**Interpretation:** dataset-level descriptive pattern (international + dramas)
 
 ### Question 3: Which countries contribute the most content?
 
@@ -240,7 +239,7 @@ title_genres (junction table)
 4. Japan (327 titles, 3.5%)
 5. Canada (267 titles, 2.8%)
 
-**Interpretation:** Heavy reliance on US production; significant investment in Indian content
+**Interpretation:** dataset-level descriptive pattern
 
 ### Question 4: What is typical movie duration?
 
@@ -250,7 +249,7 @@ title_genres (junction table)
 - Most common range: 90-120 minutes (66.7% of movies)
 - Range: 10 to 312 minutes
 
-**Interpretation:** Netflix emphasizes standard feature-length films (theatrical norm)
+**Interpretation:** dataset-level descriptive pattern
 
 ### Question 5: How many seasons do TV shows typically have?
 
@@ -260,7 +259,7 @@ title_genres (junction table)
 - Distribution: 49% have 1 season, 20.8% have 2 seasons
 - Range: 1 to 13 seasons
 
-**Interpretation:** Netflix emphasizes limited series and short-run shows over long franchises
+**Interpretation:** dataset-level descriptive pattern
 
 ### Question 6: How has content been added to Netflix over time?
 
@@ -269,7 +268,7 @@ title_genres (junction table)
 - 2021 (partial): 1,649 titles
 - Combined 2020-2021: 3,296 titles (~37% of entire catalog)
 
-**Interpretation:** Netflix aggressively expanded during pandemic period
+**Interpretation:** dataset-level descriptive pattern
 
 **Limitation:** Cannot determine causation; coincidence with pandemic does not prove causation
 
@@ -290,7 +289,7 @@ title_genres (junction table)
 - 76% added 3+ years after release
 - Only 6.6% added same year as release
 
-**Interpretation:** Netflix emphasizes back-catalog licensing over theatrical windows
+**Interpretation:** dataset-level descriptive pattern
 
 ---
 
@@ -302,14 +301,11 @@ netflix-content-analysis-sql/
 ├── README.md (this file)
 │
 ├── data/
-│   ├── raw/
-│   │   └── netflix_titles.csv (original, untouched)
-│   │
-│   └── processed/
-│       (cleaned data exported for reference)
+│   └── raw/
+│       └── README.md
 │
 ├── sql/
-│   ├── 01_create_tables.sql (schema + data loading + cleaning)
+│   ├── 01_create_and_clean_tables.sql (schema + data loading + cleaning)
 │   ├── 02_data_quality_checks.sql (validation queries)
 │   ├── 03_exploratory_analysis.sql (EDA queries)
 │   ├── 04_advanced_analysis.sql (advanced SQL techniques)
@@ -341,7 +337,7 @@ netflix-content-analysis-sql/
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/yourusername/netflix-content-analysis-sql.git
+   git clone https://github.com/gshakir-ops/netflix-content-analysis-sql.git
    cd netflix-content-analysis-sql
    ```
 
@@ -498,7 +494,7 @@ All key findings have been validated:
 
 | File | Purpose |
 |------|---------|
-| `01_create_tables.sql` | Create schema, load raw data, clean, normalize (~300 lines) |
+| `01_create_and_clean_tables.sql` | Create schema, load raw data, clean, normalize (~300 lines) |
 | `02_data_quality_checks.sql` | Validate data integrity with 16 comprehensive checks (~400 lines) |
 | `03_exploratory_analysis.sql` | Answer 16 fundamental EDA questions (~400 lines) |
 | `04_advanced_analysis.sql` | Demonstrate advanced SQL with CTEs, window functions (~600 lines) |
@@ -511,38 +507,18 @@ All key findings have been validated:
 
 ---
 
-## Portfolio Value
+## Limitations
 
-This project demonstrates:
+- The dataset is a September 2021 snapshot, not a current Netflix catalog.
+- It contains metadata only; there is no viewing, revenue, subscriber, cost, or engagement data.
+- Country and genre values are multi-valued, so their counts are not mutually exclusive.
+- Descriptive patterns do not establish causal business strategy.
 
-### Technical Skills
-- ✓ SQL: intermediate to advanced (CTEs, window functions, complex joins)
-- ✓ Data modeling: relational design, normalization, foreign keys
-- ✓ Data cleaning: handling missing data, fixing anomalies, validation
-- ✓ Database design: appropriate data types, constraints, indexing
+## Author
 
-### Analytical Skills
-- ✓ Exploratory data analysis (EDA)
-- ✓ Asking meaningful questions
-- ✓ Quantifying findings with actual data
-- ✓ Separating observation from interpretation
-- ✓ Recognizing and documenting limitations
+**Golam Shakir**
 
-### Communication Skills
-- ✓ Clear README for recruiter audience
-- ✓ Detailed methodology documentation
-- ✓ Key findings with evidence and context
-- ✓ Professional GitHub structure and naming
-
-### Best Practices
-- ✓ Raw data preserved (never modified)
-- ✓ Transformations reproducible and documented
-- ✓ All results traceable to actual queries
-- ✓ No invented data or statistics
-- ✓ Limitations clearly stated
-- ✓ Appropriate tool selection (SQL, not unnecessary complexity)
-
----
+Data Analyst portfolio project focused on SQL, data cleaning, relational modeling, and analytical reasoning.
 
 ## License
 
@@ -550,13 +526,7 @@ This project is licensed under the MIT License. See LICENSE file for details.
 
 ---
 
-## Contact & Attribution
 
-Built as a Data Analyst portfolio project.
-
-Co-Authored-By: Claude Code <noreply@anthropic.com>
-
----
 
 **Last Updated:** October 1, 2026  
 **Dataset Date:** September 25, 2021  

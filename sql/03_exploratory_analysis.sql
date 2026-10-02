@@ -45,7 +45,7 @@ SELECT 'Q3: Most Common Genres' as question;
 SELECT
     genre,
     COUNT(*) as title_count,
-    ROUND(100.0 * COUNT(*) / (SELECT COUNT(DISTINCT show_id) FROM title_genres), 2) as percentage
+    ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM titles), 2) as percentage
 FROM title_genres
 GROUP BY genre
 ORDER BY title_count DESC;
@@ -210,7 +210,7 @@ SELECT 'Q12: Top 20 Most Frequent Genres' as question;
 SELECT
     genre,
     COUNT(*) as title_count,
-    ROUND(100.0 * COUNT(*) / (SELECT COUNT(DISTINCT show_id) FROM title_genres), 2) as coverage_percent
+    ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM titles), 2) as coverage_percent
 FROM title_genres
 GROUP BY genre
 ORDER BY title_count DESC

@@ -341,7 +341,7 @@ psql netflix_db < sql/01_create_tables.sql
 - Whitespace issues are leading/trailing only (not internal)
 - Duration format for movies is "XXX min"; for TV shows is "X Season(s)"
 - Multi-value fields use comma as delimiter with optional spaces
-- TV-MA is appropriate rating for comedy specials (industry standard)
+- The missing rating is not imputed from assumptions
 
 ## Quality Assurance
 

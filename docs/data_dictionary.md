@@ -104,7 +104,7 @@
   - 1 genuinely missing
 - **Data Quality:** Cleaned; 3 anomalies fixed
 - **Data Cleaning:** 
-  - s5542, s5795, s5814: Had duration values in rating field, assigned 'TV-MA'
+  - s5542, s5795, s5814: Had duration values in rating field, left NULL
 - **Source:** MPAA/TV ratings standards
 
 ### duration
@@ -255,9 +255,9 @@ titles (1) ─── FK show_id ──→ title_countries (many)
 
 ### Cleaned Data Quality Issues
 - **Rating/Duration Swap (3 records):** Fixed by moving duration from rating field to duration field
-  - s5542: '74 min' → duration; rating set to 'TV-MA'
-  - s5795: '84 min' → duration; rating set to 'TV-MA'
-  - s5814: '66 min' → duration; rating set to 'TV-MA'
+  - s5542: '74 min' → duration; rating left NULL
+  - s5795: '84 min' → duration; rating left NULL
+  - s5814: '66 min' → duration; rating left NULL
 - **Whitespace:** All text fields trimmed of leading/trailing whitespace
 - **Date Conversion:** date_added converted from "Month DD, YYYY" to DATE type
 - **Type Validation:** type field validated to contain only 'Movie' or 'TV Show'

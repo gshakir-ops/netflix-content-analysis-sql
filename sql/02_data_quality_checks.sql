@@ -66,9 +66,9 @@ SELECT type as value, COUNT(*) as count FROM titles GROUP BY type ORDER BY count
 -- CHECK 4: VERIFY RATING ANOMALIES WERE FIXED
 -- ============================================================================
 
-SELECT 'ANOMALY FIX: s5542, s5795, s5814 ratings' as check_name,
+SELECT 'ANOMALY REVIEW: s5542, s5795, s5814' as check_name,
        CASE
-           WHEN COUNT(*) = 3 AND SUM(CASE WHEN rating = 'TV-MA' THEN 1 ELSE 0 END) = 3
+           WHEN COUNT(*) = 3 AND COUNT(*) FILTER (WHERE rating IS NULL) = 3 AND COUNT(*) FILTER (WHERE duration IN ('74 min','84 min','66 min')) = 3
            THEN 'PASS'
            ELSE 'FAIL'
        END as result
